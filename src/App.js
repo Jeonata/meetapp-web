@@ -1,7 +1,22 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import { Router } from 'react-router-dom';
+
+import './config/ReactotronConfig';
+
+import Routes from './routes';
+import history from './services/history';
+
+import GlobalStyles from './styles/global';
 
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <Router history={history}>
+      <Routes />
+      <GlobalStyles />
+      <ToastContainer autoClose={3000} />
+    </Router>
+  );
 }
 
 export default App;
