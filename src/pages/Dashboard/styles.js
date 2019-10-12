@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+import { darken } from 'polished';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const Container = styled.div`
   max-width: 900px;
@@ -22,6 +32,10 @@ export const Container = styled.div`
       font-weight: bold;
       border-radius: 4px;
 
+      &:hover {
+        background: ${darken(0.03, '#f94d6a')};
+      }
+
       svg {
         margin-right: 10px;
       }
@@ -32,11 +46,23 @@ export const Container = styled.div`
       color: #fff;
     }
   }
+`;
 
-  ul {
-    display: flex;
-    flex-direction: column;
-  }
+export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  ${props =>
+    props.loading &&
+    css`
+      li {
+        display: flex;
+        justify-content: center;
+      }
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
 `;
 
 export const Meetup = styled.li`
@@ -52,6 +78,8 @@ export const Meetup = styled.li`
 
   strong {
     color: #fff;
+    font-weight: bold;
+    font-size: 18px;
   }
 
   div {
@@ -60,6 +88,7 @@ export const Meetup = styled.li`
 
     span {
       color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
     }
 
     svg {

@@ -3,8 +3,8 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   height: 92px;
-  background: #000;
-  padding: 0 25;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 25px 0;
 `;
 
 export const Content = styled.div`
@@ -51,6 +51,10 @@ export const Profile = styled.div`
       margin-top: 5px;
       font-size: 14px;
       color: #999;
+
+      &:hover {
+        color: #fff;
+      }
     }
   }
 
