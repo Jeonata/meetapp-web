@@ -76,6 +76,11 @@ export const Meetup = styled.li`
   align-items: center;
   margin-bottom: 10px;
 
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
   strong {
     color: #fff;
     font-weight: bold;
