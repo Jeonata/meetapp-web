@@ -14,6 +14,10 @@ export default function Details() {
         .filter(meetup => meetup.id === Number(id))
         .map(meetup => (
           <li key={meetup.id}>
+            <img
+              src="https://api.adorable.io/avatars/50/abott@adorable.png"
+              alt={meetup.title}
+            />
             <strong>{meetup.title}</strong>
             <div>
               <span>{meetup.date}</span>

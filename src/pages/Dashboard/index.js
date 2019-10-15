@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';
@@ -9,17 +9,10 @@ import { FaSpinner } from 'react-icons/fa';
 import history from '~/services/history';
 
 import { Container, Meetup, List } from './styles';
-import { loadMeetupsRequest } from '~/store/modules/meetup/actions';
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
   const loading = useSelector(state => state.meetup.loading);
   const meetups = useSelector(state => state.meetup.meetups);
-
-  useEffect(() => {
-    dispatch(loadMeetupsRequest());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   function dateFormat(date) {
     return format(date, "d 'de' MMMM', às' HH'h'", { locale: pt });
