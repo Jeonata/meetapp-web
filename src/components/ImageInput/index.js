@@ -46,27 +46,29 @@ export default function ImageInput() {
   }
 
   return (
-    <Container>
-      <label htmlFor="image">
-        {preview ? (
-          <img src={preview} alt="Imagem Meetup" />
-        ) : (
-          <div>
-            <MdCameraAlt size={54} color="#fff" opacity={0.3} />
-            Selecionar imagem
-          </div>
-        )}
-        <input
-          type="file"
-          name=""
-          id="image"
-          accept="image/*"
-          data-file={file}
-          onChange={handleChange}
-          ref={ref}
-        />
-      </label>
-      {error && <span>{error}</span>}
-    </Container>
+    <>
+      <Container>
+        <label htmlFor="image">
+          {preview ? (
+            <img src={preview} alt="Imagem Meetup" />
+          ) : (
+            <div>
+              <MdCameraAlt size={54} color="#fff" opacity={0.3} />
+              Selecionar imagem
+            </div>
+          )}
+          <input
+            type="file"
+            name=""
+            id="image"
+            accept="image/*"
+            data-file={file}
+            onChange={handleChange}
+            ref={ref}
+          />
+        </label>
+        {error && <span>{error}</span>}
+      </Container>
+    </>
   );
 }

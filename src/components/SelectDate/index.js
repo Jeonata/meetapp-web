@@ -11,7 +11,7 @@ import { Container } from './styles';
 registerLocale('pt', pt);
 
 export default function SelectDate({ name }) {
-  const { defaultValue, registerField } = useField(name);
+  const { defaultValue, registerField, error } = useField(name);
   const [date, setDate] = useState();
 
   const ref = useRef();
@@ -32,23 +32,26 @@ export default function SelectDate({ name }) {
   }, [defaultValue]);
 
   return (
-    <Container>
-      <DatePicker
-        name={name}
-        placeholderText="Selecione a data"
-        selected={date}
-        minDate={new Date()}
-        onChange={newDate => setDate(newDate)}
-        locale="pt"
-        dateFormat="dd 'de' MMMM 'de' yyyy, 'às' hh:mm aa"
-        showTimeSelect
-        timeFormat="HH:mm"
-        timeCaption="Horário"
-        timeIntervals={1}
-        ref={ref}
-        autoComplete="off"
-      />
-    </Container>
+    <>
+      <Container>
+        <DatePicker
+          name={name}
+          placeholderText="Selecione a data"
+          selected={date}
+          minDate={new Date()}
+          onChange={newDate => setDate(newDate)}
+          locale="pt"
+          dateFormat="dd 'de' MMMM 'de' yyyy, 'às' hh:mm aa"
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeCaption="Horário"
+          timeIntervals={1}
+          ref={ref}
+          autoComplete="off"
+        />
+      </Container>
+      {error && <span>{error}</span>}
+    </>
   );
 }
 

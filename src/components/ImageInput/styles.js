@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
 
   label {
@@ -9,6 +9,10 @@ export const Container = styled.div`
 
     &:hover {
       opacity: 0.7;
+    }
+
+    & > div {
+      margin-bottom: 10px;
     }
 
     img,

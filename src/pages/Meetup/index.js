@@ -21,10 +21,12 @@ const schema = Yup.object().shape({
   file_id: Yup.number()
     .transform(id => (!id ? undefined : id))
     .required('A imagem é obrigatória'),
-  // date: Yup.date().required('A data é obrigatória'),
-  // field_id: Yup.number()
-  //   .transform(id => (!id ? undefined : id))
-  //   .required('A imagem é obrigatória'),
+  date: Yup.date().when('start', () => {
+    return Yup.date()
+      .min(new Date(), 'O meetup não pode ocorrer em um horário que já passou')
+      .typeError('Data inválida')
+      .required('A data é obrigatória');
+  }),
 });
 
 export default function Meetup() {
@@ -61,6 +63,9 @@ export default function Meetup() {
       history.push('/');
       toast.success('Meetup criado com sucesso!');
     } catch (err) {
+      if (err === 'Past dates are not permitted') {
+        console.log('AQUII');
+      }
       toast.error('Erro ao criar meetup, confira os dados e tente novamente');
     }
   }
