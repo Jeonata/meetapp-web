@@ -1,34 +1,38 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
-
+import { parseISO } from 'date-fns';
 import history from '~/services/history';
 
+import { dateFormat } from '~/utils/index';
 import { Container, Meetup, List } from './styles';
-import { loadMeetupsRequest } from '~/store/modules/meetup/actions';
+import api from '~/services/api';
 
 export default function Dashboard() {
-  const loading = useSelector(state => state.meetup.loading);
-  const meetups = useSelector(state => state.meetup.meetups);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
-    if (!meetups.length) {
-      dispatch(loadMeetupsRequest());
+    async function loadMeetup() {
+      setLoading(true);
+
+      const response = await api.get('meetups/list');
+
+      const data = response.data.map(meetup => ({
+        ...meetup,
+        formattedDate: dateFormat(parseISO(meetup.date)),
+      }));
+
+      setLoading(false);
+      setMeetups(data);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    loadMeetup();
   }, []);
 
-  function dateFormat(date) {
-    return format(date, "d 'de' MMMM', às' HH'h'", { locale: pt });
-  }
-
   function handleDetails(id) {
-    history.push(`/meetup/details/${id}`);
+    history.push(`/meetup/${id}/details`);
   }
 
   return (
@@ -50,7 +54,7 @@ export default function Dashboard() {
             <Meetup key={meetup.id} onClick={() => handleDetails(meetup.id)}>
               <strong>{meetup.title}</strong>
               <div>
-                <span>{dateFormat(parseISO(meetup.date))}</span>
+                <span>{meetup.formattedDate}</span>
                 <MdChevronRight size={24} color="#fff" />
               </div>
             </Meetup>

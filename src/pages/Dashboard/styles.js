@@ -31,6 +31,7 @@ export const Container = styled.div`
       font-size: 16px;
       font-weight: bold;
       border-radius: 4px;
+      transition: background 0.2s;
 
       &:hover {
         background: ${darken(0.03, '#f94d6a')};
@@ -75,6 +76,7 @@ export const Meetup = styled.li`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  transition: background 0.2s;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
