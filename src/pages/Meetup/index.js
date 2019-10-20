@@ -18,6 +18,9 @@ const schema = Yup.object().shape({
   title: Yup.string().required('O título é obrigatório'),
   description: Yup.string().required('A descrição é obrigatória'),
   localization: Yup.string().required('A localização é obrigatória'),
+  file_id: Yup.number()
+    .transform(id => (!id ? undefined : id))
+    .required('A imagem é obrigatória'),
   // date: Yup.date().required('A data é obrigatória'),
   // field_id: Yup.number()
   //   .transform(id => (!id ? undefined : id))

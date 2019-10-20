@@ -7,6 +7,7 @@ import { Container } from './styles';
 
 export default function ImageInput() {
   const { defaultValue, registerField } = useField('image');
+  const { error } = useField('file_id');
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
   const [preview, setPreview] = useState();
@@ -27,6 +28,7 @@ export default function ImageInput() {
   useEffect(() => {
     if (defaultValue) {
       setPreview(defaultValue.url);
+      setFile(defaultValue.id);
     }
   }, [defaultValue]);
 
@@ -64,6 +66,7 @@ export default function ImageInput() {
           ref={ref}
         />
       </label>
+      {error && <span>{error}</span>}
     </Container>
   );
 }
