@@ -110,3 +110,17 @@ export const Meetup = styled.li`
     }
   }
 `;
+
+export const None = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+  }
+`;

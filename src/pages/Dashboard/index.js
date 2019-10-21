@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
+import { MdAddCircleOutline, MdChevronRight, MdReport } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
 import { parseISO } from 'date-fns';
 import history from '~/services/history';
 
 import { dateFormat } from '~/utils/index';
-import { Container, Meetup, List } from './styles';
+import { Container, Meetup, List, None } from './styles';
 import api from '~/services/api';
 
 export default function Dashboard() {
@@ -50,15 +50,27 @@ export default function Dashboard() {
             <FaSpinner color="fff" size={24} />
           </li>
         ) : (
-          meetups.map(meetup => (
-            <Meetup key={meetup.id} onClick={() => handleDetails(meetup.id)}>
-              <strong>{meetup.title}</strong>
-              <div>
-                <span>{meetup.formattedDate}</span>
-                <MdChevronRight size={24} color="#fff" />
-              </div>
-            </Meetup>
-          ))
+          <li>
+            {meetups.length <= 0 ? (
+              <None>
+                <MdReport size={50} color="#fff" opacity={0.6} />
+                <p>Você não possui meetups para exibir</p>
+              </None>
+            ) : (
+              meetups.map(meetup => (
+                <Meetup
+                  key={meetup.id}
+                  onClick={() => handleDetails(meetup.id)}
+                >
+                  <strong>{meetup.title}</strong>
+                  <div>
+                    <span>{meetup.formattedDate}</span>
+                    <MdChevronRight size={24} color="#fff" />
+                  </div>
+                </Meetup>
+              ))
+            )}
+          </li>
         )}
       </List>
     </Container>

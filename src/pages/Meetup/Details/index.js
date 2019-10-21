@@ -30,13 +30,19 @@ export default function Details() {
 
   useEffect(() => {
     async function loadMeetup() {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      const response = await api.get(`meetups/list/${id}`);
+        const response = await api.get(`meetups/list/${id}`);
 
-      response.data.formattedDate = dateFormat(parseISO(response.data.date));
-      setMeetup(response.data);
-      setLoading(false);
+        response.data.formattedDate = dateFormat(parseISO(response.data.date));
+        setMeetup(response.data);
+        setLoading(false);
+      } catch (error) {
+        toast.error(
+          'Ocorreu algum problema, recarregue a página e tente novamente'
+        );
+      }
     }
 
     loadMeetup();
