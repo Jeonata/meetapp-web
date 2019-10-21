@@ -11,7 +11,7 @@ const rotate = keyframes`
 `;
 
 export const Container = styled.div`
-  max-width: 900px;
+  max-width: 940px;
   margin: 0 auto;
 
   header {
@@ -69,7 +69,7 @@ export const List = styled.ul`
 export const Meetup = styled.li`
   display: flex;
   width: 100%;
-  height: 62px;
+  min-height: 62px;
   padding: 0 30px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -96,10 +96,17 @@ export const Meetup = styled.li`
     span {
       color: rgba(255, 255, 255, 0.6);
       font-size: 16px;
+      @media only screen and (max-width: 680px) {
+        text-align: end;
+        margin-left: 10px;
+      }
     }
 
     svg {
       margin-left: 30px;
+      @media only screen and (max-width: 680px) {
+        margin-left: 10px;
+      }
     }
   }
 `;

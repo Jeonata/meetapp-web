@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { MdEdit, MdDeleteForever, MdEvent, MdPlace } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
@@ -60,6 +59,7 @@ export default function Details() {
 
   function handdleCancel() {
     confirmAlert({
+      // eslint-disable-next-line react/prop-types
       customUI: ({ onClose }) => {
         return (
           <Alert className="custom-ui">
@@ -89,10 +89,6 @@ export default function Details() {
       },
     });
   }
-
-  confirmAlert.propTypes = {
-    onClose: PropTypes.func.isRequired,
-  };
 
   return (
     <Container>

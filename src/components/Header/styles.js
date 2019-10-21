@@ -5,11 +5,14 @@ export const Container = styled.div`
   height: 92px;
   background: rgba(0, 0, 0, 0.3);
   padding: 25px 0;
+  @media only screen and (max-width: 980px) {
+    padding: 0 10px;
+  }
 `;
 
 export const Content = styled.div`
   height: 100%;
-  max-width: 900px;
+  max-width: 940px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

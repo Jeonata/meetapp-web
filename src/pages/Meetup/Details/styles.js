@@ -20,6 +20,14 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    @media only screen and (max-width: 680px) {
+      flex-direction: column;
+
+      strong {
+        margin-bottom: 20px;
+      }
+    }
+
     strong {
       font-size: 32px;
       font-weight: bold;
@@ -50,6 +58,7 @@ export const Container = styled.div`
     footer {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
 
       span {
         display: flex;
@@ -61,6 +70,7 @@ export const Container = styled.div`
 
         :first-child {
           margin-right: 33px;
+          margin-bottom: 10px;
         }
 
         svg {
