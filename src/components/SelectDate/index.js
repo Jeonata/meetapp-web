@@ -36,7 +36,7 @@ export default function SelectDate({ name }) {
       <Container>
         <DatePicker
           name={name}
-          placeholderText="Selecione a data"
+          placeholderText="Data do meetup"
           selected={date}
           minDate={new Date()}
           onChange={newDate => setDate(newDate)}
