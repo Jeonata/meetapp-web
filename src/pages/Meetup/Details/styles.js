@@ -44,6 +44,7 @@ export const Container = styled.div`
       font-size: 18px;
       color: #fff;
       line-height: 32px;
+      white-space: pre-line;
     }
 
     footer {

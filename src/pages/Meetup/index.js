@@ -63,9 +63,6 @@ export default function Meetup() {
       history.push('/');
       toast.success('Meetup criado com sucesso!');
     } catch (err) {
-      if (err === 'Past dates are not permitted') {
-        console.log('AQUII');
-      }
       toast.error('Erro ao criar meetup, confira os dados e tente novamente');
     }
   }

@@ -5,7 +5,6 @@ import history from '~/services/history';
 import api from '~/services/api';
 
 import { signInSuccess, signFailure } from './actions';
-import { loadMeetupsRequest } from '~/store/modules/meetup/actions';
 
 export function* signIn({ payload }) {
   try {
@@ -21,7 +20,6 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-    yield put(loadMeetupsRequest());
 
     history.push('/dashboard');
   } catch (err) {
@@ -67,8 +65,8 @@ export function signOut() {
 }
 
 export default all([
-  takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
   takeLatest('@auth/SIGN_OUT', signOut),
+  takeLatest('persist/REHYDRATE', setToken),
 ]);

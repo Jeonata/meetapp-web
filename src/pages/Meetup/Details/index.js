@@ -90,6 +90,10 @@ export default function Details() {
     });
   }
 
+  confirmAlert.propTypes = {
+    onClose: PropTypes.func.isRequired,
+  };
+
   return (
     <Container>
       <header>
@@ -138,7 +142,3 @@ export default function Details() {
     </Container>
   );
 }
-
-Details.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
